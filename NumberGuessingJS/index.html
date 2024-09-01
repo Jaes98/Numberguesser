@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nummergætter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Gæt et tal mellem 1 og 100</h1>
-
-     <div>
-        <ul id="liste">
-        </ul>
+    <h1>Gæt et tal</h1>
+    <p id="output">Jeg gætter på: </p>
+    <div id="controls">
+        <button id="tooLowButton">For lavt</button>
+        <button id="tooHighButton">For højt</button>
+        <button id="correctButton">Korrekt</button>
     </div>
-
-    <form action="" id="form">
-        <input type="number" id="guessField" placeholder="Indtast dit gæt">
-        <button>Gæt</button>
-        <button id="restartButton">Genstart spil</button>
-    </form>
-
-    <div>
-        <p id="countField">
-            Forsøg: 0
-        </p>
-    </div>
-
-   
+    <p id="countField">Forsøg: 0</p>
 
     <script src="script.js"></script>
 </body>

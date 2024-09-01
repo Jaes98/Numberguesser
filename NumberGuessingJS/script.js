@@ -1,58 +1,53 @@
 window.addEventListener("load", start);
- let secret = randomNumber();
- let guessCount = 0;
 
-function start(params) {
+let guessCount = 0;
+let currentGuess;
+
+function start() {
   console.log("JS kører");
+  makeGuess();
 
-  const form = document.querySelector("form");
-  form.addEventListener("submit", recieveInput);
-
-  const restartButton = document.querySelector("#restartButton");
-    restartButton.addEventListener("click", restartGame);
-  
+  document.querySelector("#tooLowButton").addEventListener("click", tooLow);
+  document.querySelector("#tooHighButton").addEventListener("click", tooHigh);
+  document.querySelector("#correctButton").addEventListener("click", correct);
 }
 
-function randomNumber(params) {
+function makeGuess() {
+  currentGuess = getRandomGuess();
+  guessCount++;
+  outputGuess(currentGuess);
+}
+
+function getRandomGuess() {
   return Math.floor(Math.random() * 100) + 1;
 }
 
-function restartGame(params) {
-    guessCount = 0;
-    const output = document.querySelector("#liste");
-    output.textContent = "";
-    const countField = document.querySelector("#countField");
-    countField.textContent = `Forsøg: ${guessCount}`;
-
-}
-
-function recieveInput(event) {
-  event.preventDefault();
-  const form = event.target;
-  guessCount++;
-
-    const guess = form.guessField.valueAsNumber
-    console.log(guess);
-
-  const comp = compare(guess, secret);
-  if (comp === 0) {
-    outputAnswer(`Du gættede på ${guess}, det var korrekt!`);
-  } else if (comp > 0) {
-    outputAnswer(`Du gættede på ${guess}, det var for lavt.`);
-  } else if (comp < 0) {
-    outputAnswer(`Du gættede på ${guess}, det var for højt.`);
-  }
-}
-
-function compare(secret, guess) {
-  return guess - secret;
-}
-
-function outputAnswer(result) {
-  const output = document.querySelector("#liste");
-  output.insertAdjacentElement("beforeend", document.createElement("li")).textContent = result;
+function outputGuess(guess) {
+  const output = document.querySelector("#output");
+  output.textContent = `Jeg gætter på: ${guess}`;
   const countField = document.querySelector("#countField");
   countField.textContent = `Forsøg: ${guessCount}`;
+}
 
+function tooLow() {
+  console.log("For lavt");
+  makeGuess();
+}
 
+function tooHigh() {
+  console.log("For højt");
+  makeGuess();
+}
+
+function correct() {
+  console.log("Korrekt");
+  const output = document.querySelector("#output");
+  output.textContent = `Jeg gættede rigtigt! Dit tal var ${currentGuess}.`;
+  turnOffButtons();
+}
+
+function turnOffButtons() {
+  document.querySelector("#tooLowButton").disabled = true;
+  document.querySelector("#tooHighButton").disabled = true;
+  document.querySelector("#correctButton").disabled = true;
 }
