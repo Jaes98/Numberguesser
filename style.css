@@ -1,0 +1,19 @@
+body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #controls {
+            margin-top: 13px;
+        }
+
+        button {
+            padding: 10px 17px;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        #countField {
+            margin-top: 20px;
+        }
